@@ -12,9 +12,9 @@ int _strlen(const char *str)
 	{
 		return (-1);
 	}
-	while (str[len])
+	while (str[len] && str[len] != '\0')
 	{
 		len++;
 	}
-	return (len);
+    return (len);
 }

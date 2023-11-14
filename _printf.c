@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 				i++;
 			}
 		}
-		else
+		else if (format[i] != '\0')
 			_putchar(format[i]);
 	}
 	va_end(args);
