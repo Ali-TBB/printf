@@ -1,6 +1,9 @@
 #include "main.h"
-void print_buffer(char buffer[], int *buff_ind);
-
+#include <endian.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /**
  * _printf - Printf function
  * @format: format.
@@ -8,58 +11,44 @@ void print_buffer(char buffer[], int *buff_ind);
  */
 int _printf(const char *format, ...)
 {
-	int i, printed = 0, printed_chars = 0;
-	int flags, width, precision, size, buff_ind = 0;
-	va_list list;
-	char buffer[BUFF_SIZE];
+	int  a, len = 0, b, i;
+	char str;
+	typ _typ[] = {
+		{"s", handle_string},
+		{"c", handle_char},
+		{"i", handle_integr},
+		{"d", handle_integr},
+	};
+	va_list args;
 
-	if (format == NULL)
-		return (-1);
-
-	va_start(list, format);
-
-	for (i = 0; format && format[i] != '\0'; i++)
+	va_start(args, format);
+	len = _strlen(format);
+	for (i = 0; i < len; i++)
 	{
-		if (format[i] != '%')
+		if (format[i] == '%')
 		{
-			buffer[buff_ind++] = format[i];
-			if (buff_ind == BUFF_SIZE)
-				print_buffer(buffer, &buff_ind);
-			/* write(1, &format[i], 1);*/
-			printed_chars++;
+			str = format[i + 1];
+			b = 0;
+			a = 0;
+			while (a < 4)
+			{
+				if (_typ[a].tp[0] == str)
+				{
+					b = 1;
+					print_str(_typ[a].handler(&args));
+					i++;
+				}
+				a++;
+			}
+			if (b != 1)
+			{
+				_putchar(format[i + 1]);
+				i++;
+			}
 		}
 		else
-		{
-			print_buffer(buffer, &buff_ind);
-			flags = get_flags(format, &i);
-			width = get_width(format, &i, list);
-			precision = get_precision(format, &i, list);
-			size = get_size(format, &i);
-			++i;
-			printed = handle_print(format, &i, list, buffer,
-				flags, width, precision, size);
-			if (printed == -1)
-				return (-1);
-			printed_chars += printed;
-		}
+			_putchar(format[i]);
 	}
-
-	print_buffer(buffer, &buff_ind);
-
-	va_end(list);
-
-	return (printed_chars);
-}
-
-/**
- * print_buffer - Prints the contents of the buffer if it exist
- * @buffer: Array of chars
- * @buff_ind: Index at which to add next char, represents the length.
- */
-void print_buffer(char buffer[], int *buff_ind)
-{
-	if (*buff_ind > 0)
-		write(1, &buffer[0], *buff_ind);
-
-	*buff_ind = 0;
+	va_end(args);
+	return (len);
 }
