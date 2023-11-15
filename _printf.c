@@ -1,9 +1,6 @@
 #include "main.h"
-#include <endian.h>
-#include <stdarg.h>
+#include <asm-generic/errno.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 /**
  * _printf - Printf function
  * @format: format.
@@ -11,44 +8,40 @@
  */
 int _printf(const char *format, ...)
 {
-	int  a, len = 0, b, i;
-	char str;
-	typ _typ[] = {
-		{"s", handle_string},
-		{"c", handle_char},
-		{"i", handle_integr},
-		{"d", handle_integr},
-	};
+	int len = 0, i;
 	va_list args;
+	struct Length length = {0};
+
+	if (!format || (format[0] == '%' && !format[1]))
+	{
+		return (-1);
+	}
 
 	va_start(args, format);
-	len = _strlen(format);
-	for (i = 0; i < len; i++)
+
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
-			str = format[i + 1];
-			b = 0;
-			a = 0;
-			while (a < 4)
+			if (format[i + 1] == '%')
 			{
-				if (_typ[a].tp[0] == str)
-				{
-					b = 1;
-					print_str(_typ[a].handler(&args));
-					i++;
-				}
-				a++;
+				_putchar('%');
 			}
-			if (b != 1)
+			else
 			{
-				_putchar(format[i + 1]);
-				i++;
+				get_type(format[i + 1], TYPE_SIMPLE)(&args, &length);
 			}
+			i++;
 		}
-		else if (format[i] != '\0')
+		else
+		{
 			_putchar(format[i]);
+			len++;
+		}
 	}
+
+	len += length.value;
+
 	va_end(args);
 	return (len);
 }

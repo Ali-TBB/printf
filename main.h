@@ -4,24 +4,50 @@
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int _printf(const char *format, ...);
+#define TYPE_SIMPLE 1
+#define TYPE_LONG 2
+#define TYPE_SHORT 3
+
 /**
- * struct type - Struct printer
- * @tp: format code
- * @handler: The handler function
+ * struct Length - Struct length
+ * @value: length.
  */
-typedef struct type
+struct Length
+{
+	int value;
+};
+/**
+ * struct type_field - Struct printer
+ * @tp: format code
+ * @type_field: The handler function
+ */
+typedef struct type_field
 {
 char tp[1];
-char *(*handler)(va_list *);
+int *(*type_field)(va_list *args, struct Length *length);
 } typ;
-int _putchar(char c);
-int _strlen(const char *str);
-void print_str(const char *str);
-char *handle_string(va_list *args);
-char *handle_integr(va_list *args);
-char *handle_char(va_list *args);
 
+/* _printf.c */
+int _printf(const char *format, ...);
+
+/* _puts.c */
+int _putchar(char c);
+int _puts(char *str);
+int _strlen(const char *str);
+
+/* print_fun.c */
+int *print_string(va_list *args, struct Length *length);
+int *print_integr(va_list *args, struct Length *length);
+int *print_char(va_list *args, struct Length *length);
+int *print_unsigned_int(va_list *args, struct Length *length);
+unsigned int custom_power(unsigned int base, int exponent);
+int lenght_get(struct Length *length);
+
+/* get_type.c */
+int *(*get_type(char fc, int type))(va_list *args, struct Length *length);
 
 #endif
