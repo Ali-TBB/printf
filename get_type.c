@@ -23,6 +23,7 @@ typ n_typs[] = {
 	{"x", print_unsigned_hexadecimal},
 	{"X", print_unsigned_HEXADECIMAl},
 	{"p", print_address},
+	{"b", print_unsigned_binary},
 	{NULL, NULL}
 };
 
