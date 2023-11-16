@@ -24,6 +24,7 @@ typ n_typs[] = {
 	{"X", print_unsigned_HEXADECIMAl},
 	{"p", print_address},
 	{"b", print_unsigned_binary},
+	{"S", print_custom_string},
 	{NULL, NULL}
 };
 

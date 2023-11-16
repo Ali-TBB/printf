@@ -109,3 +109,33 @@ int *null_fun()
 {
 	return (0);
 }
+/**
+ * print_custom_string - print string with special handling for non-printable characters
+ * @args: format.
+ * @length: length information.
+ * Return: (NULL).
+ */
+int *print_custom_string(va_list *args, struct Length *length)
+{
+    char *str = va_arg(*args, char *);
+
+    while (*str != '\0')
+    {
+        if (*str >= 32 && *str < 127)
+        {
+            _putchar(*str);
+            length->value++;
+        }
+        else
+        {
+            _putchar('\\');
+            _putchar('x');
+            _putchar((*str >> 4) < 10 ? (*str >> 4) + '0' : (*str >> 4) - 10 + 'A');
+            _putchar((*str & 0xF) < 10 ? (*str & 0xF) + '0' : (*str & 0xF) - 10 + 'A');
+            length->value += 4;
+        }
+        str++;
+    }
+
+    return (NULL);
+}

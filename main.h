@@ -52,6 +52,7 @@ int *print_unsigned_hexadecimal(va_list *args, struct Length *length);
 int *print_unsigned_HEXADECIMAl(va_list *args, struct Length *length);
 int *print_unsigned_binary(va_list *args, struct Length *length);
 int *print_address(va_list *args, struct Length *length);
+int *print_custom_string(va_list *args, struct Length *length);
 int *null_fun();
 
 
