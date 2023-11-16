@@ -141,34 +141,46 @@ int *print_unsigned_HEXADECIMAl(va_list *args, struct Length *length)
  * print_address - print address function
  * @args: format.
  * @length: length information.
- * Return: (NULL).
+ * Return: (0).
  */
-
 int *print_address(va_list *args, struct Length *length)
 {
-	void *addr = va_arg(*args, void *);
-	uintptr_t address = (uintptr_t)addr;
+    void *addr = va_arg(*args, void *);
 
-	_putchar('0');
-	_putchar('x');
-	length->value += 2;
+    if (addr == NULL)
+    {
+        _puts("(nil)");
+        length->value += 6;
+    }
+    else
+    {
+        unsigned long int value = (unsigned long int)addr;
+        unsigned long int divisor = 1;
+        int digit_count = 0;
 
-	if (address == 0)
-	{
-		_putchar('0');
-		length->value++;
-	}
-	else
-	{
-		while (address > 0)
-		{
-			int digit = address % 16;
-			char hex_char = (digit < 10) ? (digit + '0') : (digit - 10 + 'a');
+        while (value / divisor >= 16)
+        {
+            divisor *= 16;
+            digit_count++;
+        }
 
-			_putchar(hex_char);
-			length->value++;
-			address /= 16;
-		}
-	}
-	return (0);
+        _putchar('0');
+        _putchar('x');
+
+        while (divisor > 0)
+        {
+            int hex_digit = value / divisor;
+
+            if (hex_digit < 10)
+                _putchar(hex_digit + '0');
+            else
+                _putchar(hex_digit - 10 + 'a');
+
+            length->value++;
+            value %= divisor;
+            divisor /= 16;
+        }
+    }
+
+    return (0);
 }
