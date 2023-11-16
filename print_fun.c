@@ -1,14 +1,11 @@
 #include "main.h"
-#include <math.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
+
 
 /**
  * print_string - print string function
  * @args: format.
  * @length: length information.
- * Return: (NULL).
+ * Return: (0).
  */
 int *print_string(va_list *args, struct Length *length)
 {
@@ -23,7 +20,7 @@ int *print_string(va_list *args, struct Length *length)
  * print_char - print char function
  * @args: format.
  * @length: length inforemation.
- * Return: (NULL)r.
+ * Return: (0).
  */
 int *print_char(va_list *args, struct Length *length)
 {
@@ -31,14 +28,14 @@ int *print_char(va_list *args, struct Length *length)
 
 	_putchar(ch);
 	length->value++;
-	return (NULL);
+	return (0);
 }
 
 /**
  * print_integr - print integr function
  * @args: format.
  * @length: length information.
- * Return:(NULL).
+ * Return:(0).
  */
 int *print_integr(va_list *args, struct Length *length)
 {
@@ -65,14 +62,14 @@ int *print_integr(va_list *args, struct Length *length)
 		divisor /= 10;
 	}
 
-	return (NULL);
+	return (0);
 }
 
 /**
  * print_unsigned_int - print unsigned int function
  * @args: format.
  * @length: length information.
- * Return: (NULL)r.
+ * Return: (0).
  */
 int *print_unsigned_int(va_list *args, struct Length *length)
 {
@@ -102,5 +99,13 @@ int *print_unsigned_int(va_list *args, struct Length *length)
 		}
 	}
 
-	return (NULL);
+	return (0);
+}
+/**
+ * null_fun - null function
+ * Return: (0).
+ */
+int *null_fun()
+{
+	return (0);
 }

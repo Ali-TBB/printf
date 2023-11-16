@@ -1,6 +1,4 @@
 #include "main.h"
-#include <asm-generic/errno.h>
-#include <stdio.h>
 /**
  * _printf - Printf function
  * @format: format.
@@ -10,7 +8,7 @@ int _printf(const char *format, ...)
 {
 	int len = 0, i;
 	va_list args;
-	struct Length length = {0};
+	struct Length length = {0, 0};
 
 	if (!format || (format[0] == '%' && !format[1]))
 	{

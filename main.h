@@ -4,21 +4,24 @@
 
 #include <stdio.h>
 #include <stdarg.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
+#include <unistd.h>
+
 
 #define TYPE_SIMPLE 1
 #define TYPE_LONG 2
 #define TYPE_SHORT 3
-
 /**
  * struct Length - Struct length
  * @value: length.
+ * @UPERR_HEX: uperr hexa
  */
 struct Length
 {
 	int value;
+	int UPERR_HEX;
 };
 /**
  * struct type_field - Struct printer
@@ -27,7 +30,7 @@ struct Length
  */
 typedef struct type_field
 {
-char tp[1];
+char *tp;
 int *(*type_field)(va_list *args, struct Length *length);
 } typ;
 
@@ -44,8 +47,13 @@ int *print_string(va_list *args, struct Length *length);
 int *print_integr(va_list *args, struct Length *length);
 int *print_char(va_list *args, struct Length *length);
 int *print_unsigned_int(va_list *args, struct Length *length);
-unsigned int custom_power(unsigned int base, int exponent);
-int lenght_get(struct Length *length);
+int *print_unsigned_octal(va_list *args, struct Length *length);
+int *print_unsigned_hexadecimal(va_list *args, struct Length *length);
+int *print_unsigned_HEXADECIMAl(va_list *args, struct Length *length);
+int *print_unsigned_binary(va_list *args, struct Length *length);
+int *print_address(va_list *args, struct Length *length);
+int *null_fun();
+
 
 /* get_type.c */
 int *(*get_type(char fc, int type))(va_list *args, struct Length *length);

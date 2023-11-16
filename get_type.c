@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <string.h>
 
 /**
  * get_type - get the printer function
@@ -10,7 +11,7 @@
 int *(*get_type(char fc, int type))(va_list * args, struct Length *length)
 {
 	typ *typs;
-	int i;
+	int i = 0;
 
 typ n_typs[] = {
 	{"c", print_char},
@@ -18,7 +19,11 @@ typ n_typs[] = {
 	{"d", print_integr},
 	{"u", print_unsigned_int},
 	{"i", print_integr},
-	{"_", NULL}
+	{"o", print_unsigned_octal},
+	{"x", print_unsigned_hexadecimal},
+	{"X", print_unsigned_HEXADECIMAl},
+	{"p", print_address},
+	{NULL, NULL}
 };
 
 	if (type == TYPE_LONG)
@@ -29,12 +34,16 @@ typ n_typs[] = {
 	else
 		typs = n_typs;
 
-	for (i = 0; typs[i].type_field != NULL; i++)
+	while (typs[i].tp != NULL)
 	{
 		if (typs[i].tp[0] == fc)
 		{
 			return (typs[i].type_field);
 		}
+	i++;
 	}
-	return (NULL);
+	if (typs[i].tp == NULL)
+		_putchar(fc);
+
+	return (null_fun);
 }

@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <unistd.h>
 #include "main.h"
 /**
  * _putchar - writes the character c to stdout
@@ -26,7 +24,6 @@ int _puts(char *str)
 
 	write(1, str, len);
 
-	free((char *)str);
 	return (len);
 }
 /**
