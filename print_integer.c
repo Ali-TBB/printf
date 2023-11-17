@@ -42,24 +42,31 @@ int *print_integr(va_list *args, struct Length *length)
  */
 int *print_l_integr(va_list *args, struct Length *length)
 {
-	long n = va_arg(*args, long);
+    long n = va_arg(*args, long);
+    long a, divisor = 1;
 
-	if (n < 0)
-	{
-		_putchar('-');
-		n = -n;
-		length->value++;
-	}
+    if (n < 0)
+    {
+        _putchar('-');
+        n = -n;
+        length->value++;
+    }
 
-	if (n / 10 != 0)
-	{
-		print_l_integr(args, length);
-	}
+    while (n / divisor >= 10)
+    {
+        divisor *= 10;
+    }
 
-	_putchar(n % 10 + '0');
-	length->value++;
+    while (divisor > 0)
+    {
+        a = n / divisor;
+        _putchar(a + '0');
+        length->value++;
+        n %= divisor;
+        divisor /= 10;
+    }
 
-	return (0);
+    return (0);
 }
 
 /**

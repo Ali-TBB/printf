@@ -26,9 +26,15 @@ int _printf(const char *format, ...)
 			else
 			{
 				if (format[i + 1] == 'h')
+				{
 					get_type(format[i + 2], TYPE_SHORT)(&args, &length);
+					i++;
+				}
 				else if (format[i + 1] == 'l')
+				{
 					get_type(format[i + 2], TYPE_LONG)(&args, &length);
+					i++;
+				}
 				else
 					get_type(format[i + 1], TYPE_SIMPLE)(&args, &length);
 			}
