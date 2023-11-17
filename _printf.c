@@ -22,23 +22,23 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == '%')
-			{
-				_putchar('%');
-				len++;
-			}
+				len += _putchar('%');
 			else
 			{
-				get_type(format[i + 1], TYPE_SIMPLE)(&args, &length);
+				if (format[i + 1] == 'h')
+					get_type(format[i + 2], TYPE_SHORT)(&args, &length);
+				else if (format[i + 1] == 'l')
+					get_type(format[i + 2], TYPE_LONG)(&args, &length);
+				else
+					get_type(format[i + 1], TYPE_SIMPLE)(&args, &length);
 			}
 			i++;
 		}
 		else
 		{
-			_putchar(format[i]);
-			len++;
+			len += _putchar(format[i]);
 		}
 	}
-
 	len += length.value;
 
 	va_end(args);

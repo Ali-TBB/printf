@@ -42,18 +42,37 @@ int _putchar(char c);
 int _puts(char *str);
 int _strlen(const char *str);
 
-/* print_fun.c */
+/* print_string.c */
 int *print_string(va_list *args, struct Length *length);
-int *print_integr(va_list *args, struct Length *length);
 int *print_char(va_list *args, struct Length *length);
+int *print_h_char(va_list *args, struct Length *length);
+int *print_custom_string(va_list *args, struct Length *length);
+int *null_fun();
+
+/* print_integr.c */
+int *print_integr(va_list *args, struct Length *length);
+int *print_l_integr(va_list *args, struct Length *length);
+int *print_l_integr(va_list *args, struct Length *length);
+
+/*print_type.c */
 int *print_unsigned_int(va_list *args, struct Length *length);
 int *print_unsigned_octal(va_list *args, struct Length *length);
 int *print_unsigned_hexadecimal(va_list *args, struct Length *length);
 int *print_unsigned_HEXADECIMAl(va_list *args, struct Length *length);
 int *print_unsigned_binary(va_list *args, struct Length *length);
 int *print_address(va_list *args, struct Length *length);
-int *print_custom_string(va_list *args, struct Length *length);
-int *null_fun();
+
+/* print_long_type.c */
+int *print_l_unsigned_int(va_list *args, struct Length *length);
+int *print_l_unsigned_octal(va_list *args, struct Length *length);
+int *print_unsigned_l_hexadecimal(va_list *args, struct Length *length);
+int *print_unsigned_l_HEXADECIMAl(va_list *args, struct Length *length);
+/* print_short_type.c */
+int *print_h_integr(va_list *args, struct Length *length);
+int *print_h_unsigned_int(va_list *args, struct Length *length);
+int *print_h_unsigned_octal(va_list *args, struct Length *length);
+int *print_h_unsigned_hexadecimal(va_list *args, struct Length *length);
+int *print_h_unsigned_HEXADECIMAl(va_list *args, struct Length *length);
 
 
 /* get_type.c */

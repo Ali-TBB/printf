@@ -27,12 +27,30 @@ typ n_typs[] = {
 	{"S", print_custom_string},
 	{NULL, NULL}
 };
-
+typ l_typs[] = {
+	{"d", print_l_integr},
+	{"u", print_l_unsigned_int},
+	{"i", print_l_integr},
+	{"o", print_l_unsigned_octal},
+	{"x", print_unsigned_l_hexadecimal},
+	{"X", print_unsigned_l_HEXADECIMAl},
+	{NULL, NULL}
+};
+typ h_typs[] = {
+	{"c", print_h_char},
+	{"d", print_h_integr},
+	{"u", print_h_unsigned_int},
+	{"i", print_h_integr},
+	{"o", print_h_unsigned_octal},
+	{"x", print_h_unsigned_hexadecimal},
+	{"X", print_h_unsigned_HEXADECIMAl},
+	{NULL, NULL}
+};
 	if (type == TYPE_LONG)
 
-		typs = n_typs;
+		typs = l_typs;
 	else if (type == TYPE_SHORT)
-		typs = n_typs;
+		typs = h_typs;
 	else
 		typs = n_typs;
 

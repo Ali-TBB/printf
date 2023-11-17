@@ -30,77 +30,23 @@ int *print_char(va_list *args, struct Length *length)
 	length->value++;
 	return (0);
 }
-
 /**
- * print_integr - print integr function
+ * print_h_char - print short char function
  * @args: format.
  * @length: length information.
- * Return:(0).
+ * Return: (NULL).
  */
-int *print_integr(va_list *args, struct Length *length)
+int *print_h_char(va_list *args, struct Length *length)
 {
-	int n = va_arg(*args, int);
-	int a, divisor = 1;
+	int ch = va_arg(*args, int);
 
-	if (n < 0)
-	{
-		_putchar('-');
-		n = -n;
-		length->value++;
-	}
-	while (n / divisor >= 10)
-	{
-		divisor *= 10;
-	}
+	_putchar(ch);
+	length->value++;
 
-	while (divisor > 0)
-	{
-		a = n / divisor;
-		_putchar(a + '0');
-		length->value++;
-		n %= divisor;
-		divisor /= 10;
-	}
-
-	return (0);
+	return (NULL);
 }
 
-/**
- * print_unsigned_int - print unsigned int function
- * @args: format.
- * @length: length information.
- * Return: (0).
- */
-int *print_unsigned_int(va_list *args, struct Length *length)
-{
-	unsigned int n = va_arg(*args, unsigned int);
 
-	if (n == 0)
-	{
-		_putchar('0');
-		length->value++;
-	}
-	else
-	{
-		unsigned int divisor = 1;
-		unsigned int temp = n;
-
-		while (temp >= 10)
-		{
-			temp /= 10;
-			divisor *= 10;
-		}
-
-		while (divisor > 0)
-		{
-			_putchar((n / divisor) % 10 + '0');
-			divisor /= 10;
-			length->value++;
-		}
-	}
-
-	return (0);
-}
 /**
  * null_fun - null function
  * Return: (0).
@@ -110,7 +56,7 @@ int *null_fun()
 	return (0);
 }
 /**
- * print_custom_string - print string with special handling for non-printable characters
+ * print_custom_string - print string with special handling
  * @args: format.
  * @length: length information.
  * Return: (NULL).
