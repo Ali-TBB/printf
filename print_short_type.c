@@ -3,7 +3,7 @@
  * print_h_unsigned_octal - print short unsigned octal function
  * @args: format.
  * @length: length information.
- * Return: (NULL).
+ * Return: (0).
  */
 int *print_h_unsigned_octal(va_list *args, struct Length *length)
 {
@@ -35,14 +35,14 @@ int *print_h_unsigned_octal(va_list *args, struct Length *length)
 		}
 	}
 
-	return (NULL);
+	return (0);
 }
 
 /**
  * print_h_unsigned_hexadecimal - print short unsigned hexadecimal function
  * @args: format.
  * @length: length information.
- * Return: (NULL).
+ * Return: (0).
  */
 int *print_h_unsigned_hexadecimal(va_list *args, struct Length *length)
 {
@@ -82,13 +82,13 @@ int *print_h_unsigned_hexadecimal(va_list *args, struct Length *length)
 		}
 	}
 
-	return (NULL);
+	return (0);
 }
 /**
  * print_h_unsigned_HEXADECIMAl - print short unsigned hexadecimal function
  * @args: format.
  * @length: length information.
- * Return: (NULL).
+ * Return: (0).
  */
 int *print_h_unsigned_HEXADECIMAl(va_list *args, struct Length *length)
 {
@@ -128,5 +128,5 @@ int *print_h_unsigned_HEXADECIMAl(va_list *args, struct Length *length)
 		}
 	}
 
-	return (NULL);
+	return (0);
 }

@@ -73,7 +73,7 @@ int *print_l_unsigned_int(va_list *args, struct Length *length)
  * print_h_unsigned_int - print short unsigned int function
  * @args: format.
  * @length: length information.
- * Return: (NULL).
+ * Return: (0).
  */
 int *print_h_unsigned_int(va_list *args, struct Length *length)
 {
@@ -102,5 +102,5 @@ int *print_h_unsigned_int(va_list *args, struct Length *length)
 		}
 	}
 
-	return (NULL);
+	return (0);
 }
