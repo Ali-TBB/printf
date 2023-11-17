@@ -45,7 +45,9 @@ typ n_typs[] = {
 	i++;
 	}
 	if (typs[i].tp == NULL)
+	{
+		_putchar('%');
 		_putchar(fc);
-
+	}
 	return (null_fun);
 }
