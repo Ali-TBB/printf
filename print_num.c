@@ -147,40 +147,31 @@ int *print_address(va_list *args, struct Length *length)
 {
 	void *addr = va_arg(*args, void *);
 
-	if (addr == NULL)
+	unsigned long int value = (unsigned long int)addr;
+	unsigned long int divisor = 1;
+	int digit_count = 0;
+
+	while (value / divisor >= 16)
 	{
-		_puts("(nil)");
-		length->value += 6;
-	}
-	else
-	{
-		unsigned long int value = (unsigned long int)addr;
-		unsigned long int divisor = 1;
-		int digit_count = 0;
-
-		while (value / divisor >= 16)
-		{
-			divisor *= 16;
-			digit_count++;
-		}
-
-		_putchar('0');
-		_putchar('x');
-
-		while (divisor > 0)
-		{
-			int hex_digit = value / divisor;
-
-			if (hex_digit < 10)
-				_putchar(hex_digit + '0');
-			else
-				_putchar(hex_digit - 10 + 'a');
-
-			length->value++;
-			value %= divisor;
-			divisor /= 16;
-		}
+		divisor *= 16;
+		digit_count++;
 	}
 
+	_putchar('0');
+	_putchar('x');
+
+	while (divisor > 0)
+	{
+		int hex_digit = value / divisor;
+
+		if (hex_digit < 10)
+			_putchar(hex_digit + '0');
+		else
+			_putchar(hex_digit - 10 + 'a');
+
+		length->value++;
+		value %= divisor;
+		divisor /= 16;
+	}
 	return (0);
 }
