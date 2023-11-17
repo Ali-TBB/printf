@@ -67,6 +67,7 @@ int *print_l_unsigned_int(va_list *args, struct Length *length);
 int *print_l_unsigned_octal(va_list *args, struct Length *length);
 int *print_unsigned_l_hexadecimal(va_list *args, struct Length *length);
 int *print_unsigned_l_HEXADECIMAl(va_list *args, struct Length *length);
+
 /* print_short_type.c */
 int *print_h_integr(va_list *args, struct Length *length);
 int *print_h_unsigned_int(va_list *args, struct Length *length);
@@ -74,8 +75,12 @@ int *print_h_unsigned_octal(va_list *args, struct Length *length);
 int *print_h_unsigned_hexadecimal(va_list *args, struct Length *length);
 int *print_h_unsigned_HEXADECIMAl(va_list *args, struct Length *length);
 
+/*print_rot13.c*/
+int *print_rot13(va_list *args, struct Length *length);
 
 /* get_type.c */
 int *(*get_type(char fc, int type))(va_list *args, struct Length *length);
 
+/*print_reversed.c */
+int *print_reversed(va_list *args, struct Length *length);
 #endif

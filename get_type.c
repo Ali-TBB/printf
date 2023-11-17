@@ -60,6 +60,15 @@ typ h_typs[] = {
 		{
 			return (typs[i].type_field);
 		}
+		else if (fc == 'r')
+		{
+			return (print_reversed);
+		}
+		else if (fc == 'R')
+		{
+			return (print_rot13);
+		}
+
 	i++;
 	}
 	if (typs[i].tp == NULL)
