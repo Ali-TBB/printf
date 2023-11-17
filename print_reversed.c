@@ -1,4 +1,4 @@
-#include "main.c"
+#include "main.h"
 /**
  * print_reversed - print a string in reverse order
  * @length: length information.

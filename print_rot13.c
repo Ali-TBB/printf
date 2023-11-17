@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-
 /**
  * print_rot13 - print a string encrypted with ROT13
  * @length: length information.
